@@ -2,17 +2,23 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Download, FileText, Eye } from "lucide-react";
+import { Download, FileText } from "lucide-react";
+import { HoleBackground } from "@/components/ui/hole-background";
 
 export default function ResumeSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || "#";
+  const RESUME_URL = "/Resume - Kishore P (SDE).pdf";
 
   return (
-    <section id="resume" className="py-20 px-6">
-      <div ref={ref} className="max-w-6xl mx-auto">
+    <section id="resume" className="relative py-20 px-6 overflow-hidden">
+      <HoleBackground
+        className="absolute inset-0 -z-10 pointer-events-none opacity-40 mask-[radial-gradient(ellipse_at_center,white,transparent_75%)]"
+        strokeColor="rgba(0, 255, 157, 0.15)"
+      />
+
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -33,7 +39,7 @@ export default function ResumeSection() {
                 Currently open to full-time roles and internship opportunities.
               </p>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                {["B.Tech CSE — VIT Chennai", "CGPA: 8.5+", "Open to Relocation"].map((item) => (
+                {["B.Tech CSE — AI Robotics", "VIT Chennai", "CGPA: 8.21", "Open to Relocation"].map((item) => (
                   <span
                     key={item}
                     className="px-3 py-1 bg-white/[0.04] border border-white/8 rounded-full text-xs text-[#777]"
@@ -54,18 +60,8 @@ export default function ResumeSection() {
                 <Download size={16} className="group-hover:-translate-y-0.5 transition-transform" />
                 Download Resume
               </a>
-              {RESUME_URL !== "#" && (
-                <a
-                  href={RESUME_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-7 py-3.5 border border-white/10 text-[#888] rounded-xl font-medium text-sm hover:border-white/20 hover:text-white transition-all duration-200 hover:scale-[1.03] active:scale-95"
-                >
-                  <Eye size={16} />
-                  Preview Online
-                </a>
-              )}
             </div>
+
           </div>
 
           <div className="mt-6 pt-5 border-t border-white/5 flex items-center gap-2">

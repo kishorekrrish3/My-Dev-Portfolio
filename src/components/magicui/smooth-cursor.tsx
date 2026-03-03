@@ -28,11 +28,11 @@ export function SmoothCursor({ cursor = <CursorDot /> }: SmoothCursorProps) {
   const accumulatedRotation = useRef(0);
   const previousAngle = useRef(0);
 
-  const springConfig = { damping: 45, stiffness: 400, mass: 1, restDelta: 0.001 };
+  const springConfig = { damping: 38, stiffness: 600, mass: 1, restDelta: 0.001 };
 
   const cursorX = useSpring(0, springConfig);
   const cursorY = useSpring(0, springConfig);
-  const scale = useSpring(1, { ...springConfig, stiffness: 500, damping: 35 });
+  const scale = useSpring(1, { ...springConfig, stiffness: 650, damping: 30 });
 
   useEffect(() => {
     // Only show on desktop

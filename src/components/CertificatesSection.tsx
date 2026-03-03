@@ -7,10 +7,11 @@ import { getCertificates } from "@/lib/appwrite";
 import { Award, ExternalLink, Shield, Cpu, Globe, Database } from "lucide-react";
 
 const FALLBACK_CERTIFICATES = [
+  // AI/ML
   {
-    $id: "c1",
-    title: "Deep Learning Specialization",
-    issuer: "Coursera / deeplearning.ai",
+    $id: "c4",
+    title: "Career Essentials in Generative AI",
+    issuer: "Microsoft & LinkedIn",
     date: "2024",
     credential_url: "#",
     category: "AI/ML",
@@ -18,9 +19,9 @@ const FALLBACK_CERTIFICATES = [
     order: 1,
   },
   {
-    $id: "c2",
-    title: "Machine Learning with Python",
-    issuer: "IBM / Coursera",
+    $id: "c5",
+    title: "A-Z Machine Learning",
+    issuer: "SuperDataScience Team · Udemy",
     date: "2024",
     credential_url: "#",
     category: "AI/ML",
@@ -28,46 +29,100 @@ const FALLBACK_CERTIFICATES = [
     order: 2,
   },
   {
-    $id: "c3",
-    title: "Full-Stack Web Development",
-    issuer: "freeCodeCamp",
-    date: "2023",
-    credential_url: "#",
-    category: "Web Dev",
-    icon: "globe",
-    order: 3,
-  },
-  {
-    $id: "c4",
-    title: "Introduction to Cybersecurity",
-    issuer: "Cisco NetAcad",
-    date: "2023",
-    credential_url: "#",
-    category: "Security",
-    icon: "shield",
-    order: 4,
-  },
-  {
-    $id: "c5",
-    title: "Python for Data Science",
-    issuer: "NPTEL / IIT",
-    date: "2023",
-    credential_url: "#",
-    category: "Python",
-    icon: "database",
-    order: 5,
-  },
-  {
     $id: "c6",
-    title: "Computer Vision with OpenCV",
-    issuer: "Udemy",
+    title: "A-Z Deep Learning",
+    issuer: "SuperDataScience Team · Udemy",
     date: "2024",
     credential_url: "#",
     category: "AI/ML",
     icon: "cpu",
+    order: 3,
+  },
+  // Programming
+  {
+    $id: "c3",
+    title: "Foundational C# Certification",
+    issuer: "Microsoft",
+    date: "2024",
+    credential_url: "#",
+    category: "Programming",
+    icon: "cpu",
+    order: 4,
+  },
+  {
+    $id: "c11",
+    title: "Master the Coding Interview: DSA",
+    issuer: "Zero to Mastery · Udemy",
+    date: "2024",
+    credential_url: "#",
+    category: "Programming",
+    icon: "database",
+    order: 5,
+  },
+  // Web Dev
+  {
+    $id: "c7",
+    title: "The Complete Full-Stack Web Development Bootcamp",
+    issuer: "The App Brewery",
+    date: "2023",
+    credential_url: "#",
+    category: "Web Dev",
+    icon: "globe",
     order: 6,
   },
+  {
+    $id: "c8",
+    title: "Complete Web Development Bootcamp",
+    issuer: "Angela Yu · Udemy",
+    date: "2023",
+    credential_url: "#",
+    category: "Web Dev",
+    icon: "globe",
+    order: 7,
+  },
+  {
+    $id: "c9",
+    title: "Complete Web & Mobile Designer",
+    issuer: "Zero to Mastery · Udemy",
+    date: "2023",
+    credential_url: "#",
+    category: "Web Dev",
+    icon: "award",
+    order: 8,
+  },
+  // Others
+  {
+    $id: "c2",
+    title: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    date: "2024",
+    credential_url: "#",
+    category: "Others",
+    icon: "globe",
+    order: 9,
+  },
+  {
+    $id: "c1",
+    title: "Scrum Fundamentals Certified (SFC)",
+    issuer: "SCRUMstudy",
+    date: "2024",
+    credential_url: "#",
+    category: "Others",
+    icon: "award",
+    order: 10,
+  },
+  {
+    $id: "c10",
+    title: "Complete Ethical Hacking Bootcamp",
+    issuer: "Zero to Mastery · Udemy",
+    date: "2024",
+    credential_url: "#",
+    category: "Others",
+    icon: "shield",
+    order: 11,
+  },
 ];
+
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   cpu: <Cpu size={16} />,
@@ -79,11 +134,9 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 
 const CATEGORY_COLORS: Record<string, string> = {
   "AI/ML": "#00ff9d",
-  "Web Dev": "#00d4ff",
-  "Security": "#f59e0b",
-  "Python": "#a78bfa",
-  "Networks": "#fb7185",
-  "Database": "#34d399",
+  "Web Dev": "#f97316",
+  "Programming": "#a78bfa",
+  "Others": "#f59e0b",
 };
 
 interface Certificate {
@@ -127,11 +180,10 @@ export default function CertificatesSection() {
           <button
             key={cat}
             onClick={() => setFilter(cat)}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-200 ${
-              filter === cat
-                ? "bg-[#00ff9d] text-[#0a0a0a] font-semibold"
-                : "bg-white/5 text-[#666] hover:text-white border border-white/8"
-            }`}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-200 ${filter === cat
+              ? "bg-[#00ff9d] text-[#0a0a0a] font-semibold"
+              : "bg-white/5 text-[#666] hover:text-white border border-white/8"
+              }`}
           >
             {cat}
           </button>

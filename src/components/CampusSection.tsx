@@ -3,58 +3,56 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SectionWrapper, { SectionLabel, SectionTitle } from "./SectionWrapper";
-import { Users, Music, Code2, Trophy, CalendarDays, Star } from "lucide-react";
+import { Music, Code2, Trophy, CalendarDays } from "lucide-react";
 
 const CAMPUS_ACTIVITIES = [
   {
     org: "Arignar Anna Thamizh Mandram",
-    role: "Core Member & Technical Lead",
-    period: "2023 — Present",
+    role: "Design Lead & Joint Secretary",
+    period: "2025",
     icon: <Music size={18} />,
     color: "#f59e0b",
     highlights: [
-      "Organized Muthamizh Thiruvizha — an annual cultural celebration honoring Tamil literature, music, and arts with 500+ attendees",
-      "Spearheaded technical infrastructure: AV setup, live streaming, digital stage management",
-      "Led a cross-functional volunteer team of 25+ members coordinating logistics and event flow",
-      "Bridged technical and cultural domains, creating hybrid events showcasing Tamil digital art",
+      "Organized an international-level Pongal Thiruvizha 2025 featuring 12+ cultural and literary events, with renowned playback singer Velmurugan as the chief guest — drawing large-scale student participation and inter-college recognition",
+      "Led the end-to-end design strategy for the club, conceptualizing and executing all branding, posters, stage visuals, and digital assets for a consistent and elevated cultural identity",
+      "Designed and published 3–4 editions of Kanaiyazhi, the student-curated literary magazine, overseeing layout design, visual storytelling, and structured presentation of fully student-written content",
+      "Worked within a 20-member core committee and led a 500+ member community to successfully conduct 35+ events spanning cultural festivals, literary competitions, workshops, and intra-college celebrations",
+      "Continued involvement for 3 years as a mentor and advisor to current design leads, ensuring continuity in creative and organizational standards",
     ],
-    badge: "Cultural & Tech",
+    badge: "Cultural & Literature",
+
   },
   {
-    org: "Technical Collaborative Events",
-    role: "Event Coordinator",
-    period: "2023 — Present",
+    org: "Artificial Intelligence Club",
+    role: "General Secretary & Advisor",
+    period: "2025 — Current",
     icon: <Code2 size={18} />,
     color: "#00d4ff",
     highlights: [
-      "Coordinated inter-departmental hackathons and coding competitions with 200+ participants",
-      "Designed event websites and registration portals using React and Node.js",
-      "Conducted workshops on AI/ML fundamentals for first and second-year students",
-      "Mentored junior peers on project ideation, tech stack selection, and presentation skills",
+      "Organized and led large-scale AI-focused technical events, hackathons, and workshops impacting 800+ students across AI, ML, Cloud, and Product Engineering domains",
+      "Drove strategic planning, technical roadmap design, and cross-domain collaboration as General Secretary and later Advisor to elevate the club's innovation standards",
+      "Led a 400+ member technical community and a 15–20 member core leadership team to execute 25+ high-impact events including hackathons, hands-on bootcamps, research sessions, and industry speaker events",
+      "Strengthened industry-academia connections by onboarding external speakers, collaborating with IBM Z Ambassadors and tech professionals",
+      "Mentored multiple project teams across AI, Full Stack, and Cloud domains — guiding students from ideation to deployment",
     ],
-    badge: "Tech Events",
+    badge: "Technical",
   },
   {
-    org: "VIT Student Research Cell",
-    role: "Research Contributor",
-    period: "2024 — Present",
+    org: "Student Welfare Office — VIT",
+    role: "Events & Outreach Member",
+    period: "2024 — Current",
     icon: <Trophy size={18} />,
     color: "#a78bfa",
     highlights: [
-      "Active contributor to capstone research on medical image classification",
-      "Presented project findings at intra-department seminars and tech showcases",
-      "Collaborated with faculty on grant proposals for AI-driven healthcare tools",
+      "Led design and print production for major university festivals including Vibrance (Cultural Fest) and TechnoVIT (Technical Fest) for 2.5 years — overseeing visual branding, stage creatives, merchandise, and on-ground branding execution",
+      "Contributed to event planning, discipline management, logistics coordination, and guest hospitality for Fresher's Induction, Graduation Ceremony, Crystal Connexions (15-Year Alumni Meet featuring Kamal Haasan & MaKaPa)",
+      "Managed celebrity campus promotions including Nani, Priyanka Mohan, and Surya's Saturday promotional event",
+      "Collaborated across design, operations, hospitality, and guest care committees to ensure structured execution of high-footfall events involving thousands of participants and distinguished guests",
     ],
-    badge: "Research",
+    badge: "Leadership & Events",
   },
 ];
 
-const STATS = [
-  { value: "500+", label: "Event Attendees", icon: <Users size={16} /> },
-  { value: "25+", label: "Volunteers Led", icon: <Star size={16} /> },
-  { value: "3+", label: "Events Organized", icon: <CalendarDays size={16} /> },
-  { value: "200+", label: "Students Mentored", icon: <Trophy size={16} /> },
-];
 
 export default function CampusSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -62,28 +60,10 @@ export default function CampusSection() {
 
   return (
     <SectionWrapper id="campus">
-      <SectionLabel label="Campus Life" />
-      <SectionTitle title="Campus Footprint" />
+      <SectionLabel label="Journey" />
+      <SectionTitle title="My Journey So Far" />
 
       <div ref={ref}>
-        {/* Stats row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          {STATS.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-[#111] border border-white/5 rounded-2xl p-4 text-center"
-            >
-              <div className="flex justify-center mb-2 text-[#00ff9d]">{stat.icon}</div>
-              <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-              <div className="text-xs text-[#555] font-mono uppercase tracking-wider">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
 
         {/* Activity cards */}
         <div className="space-y-6">

@@ -7,67 +7,68 @@ import { Briefcase, GraduationCap, MapPin, CalendarDays } from "lucide-react";
 
 const EXPERIENCE = [
   {
-    role: "Systems Engineer",
+    role: "Specialist Programmer (L1) Trainee",
     company: "Infosys",
     location: "India",
-    period: "2026 — Upcoming",
-    type: "Full-Time",
+    period: "Upcoming",
+    type: "Full-Time · 10 LPA",
     status: "upcoming",
     description:
-      "Selected for the Systems Engineer role at Infosys, one of India's largest IT services companies. Will contribute to enterprise-scale software solutions and digital transformation projects.",
-    tags: ["Enterprise Software", "Cloud", "Digital Transformation"],
+      "Selected as a Specialist Programmer (L1) Trainee at Infosys — one of India's largest IT services and consulting companies. Will contribute to enterprise-scale software solutions and digital transformation projects.",
+    tags: ["Enterprise Software", "Cloud", "Digital Transformation", "Full-Stack"],
     color: "#00ff9d",
   },
   {
-    role: "AI/ML Research Intern",
-    company: "VIT Chennai — Capstone Lab",
-    location: "Chennai, India",
-    period: "2024 — Present",
-    type: "Academic Research",
-    status: "active",
+    role: "Frontend & UI/UX Intern",
+    company: "VITADATA (Startup)",
+    location: "Remote / Chennai, India",
+    period: "2025 — May",
+    type: "Internship",
+    status: "completed",
     description:
-      "Conducting capstone research on Skin Lesion Classification using CNNs — 14-class classification model. Collaborating with faculty on deep learning optimization and medical imaging pipelines.",
-    tags: ["CNN", "Deep Learning", "Medical Imaging", "Python"],
+      "Working as a Frontend and UI/UX Intern at VITADATA, a startup, focusing on building responsive user interfaces and designing intuitive user experiences for data-driven products.",
+    tags: ["React", "UI/UX", "Figma", "Frontend", "TypeScript"],
     color: "#00d4ff",
-  },
-  {
-    role: "Event Organizer & Tech Lead",
-    company: "Arignar Anna Thamizh Mandram, VIT",
-    location: "Chennai, India",
-    period: "2023 — Present",
-    type: "Volunteer",
-    status: "active",
-    description:
-      "Led technical and cultural events including Muthamizh Thiruvizha and collaborative inter-departmental tech fests. Managed a team of 20+ volunteers handling logistics and technical demonstrations.",
-    tags: ["Leadership", "Event Management", "Team Coordination"],
-    color: "#a78bfa",
   },
 ];
 
 const EDUCATION = [
   {
-    degree: "B.Tech — Computer Science & Engineering",
+    degree: "B.Tech — Computer Science & Engineering (AI & Robotics)",
     institution: "Vellore Institute of Technology (VIT), Chennai",
     location: "Chennai, Tamil Nadu",
-    period: "2022 — 2026",
+    period: "2023 — Ongoing",
     status: "active",
     description:
-      "Specializing in AI & Machine Learning. Active participant in tech clubs, cultural committees, and research collaborations. Strong academic record with focus on applied ML and full-stack development.",
-    tags: ["Computer Science", "AI/ML", "Full-Stack", "Robotics"],
+      "Specializing in Artificial Intelligence & Robotics. Active leader in technical and cultural clubs, research collaborations, and large-scale campus events. Strong academic focus on applied ML, full-stack development, and systems design. CGPA: 8.21",
+    tags: ["AI & Robotics", "Computer Science", "Full-Stack", "CGPA: 8.21"],
     color: "#00ff9d",
+
   },
   {
     degree: "Higher Secondary Education (Class XII)",
-    institution: "State Board — Tamil Nadu",
+    institution: "The Optimus Public School, Bhavani",
     location: "Tamil Nadu, India",
-    period: "2020 — 2022",
+    period: "2022",
     status: "completed",
     description:
-      "Completed Class XII with distinction. Focused on Mathematics, Physics, and Computer Science. Developed foundational programming skills and participated in science exhibitions.",
-    tags: ["Mathematics", "Physics", "Computer Science"],
+      "Completed Class XII under the CBSE board with Maths, Physics, Chemistry, and Computer Science. Built strong analytical and programming foundations.",
+    tags: ["CBSE", "Mathematics", "Physics", "Computer Science"],
     color: "#f59e0b",
   },
+  {
+    degree: "Secondary Education (Class X)",
+    institution: "The Optimus Public School, Bhavani",
+    location: "Tamil Nadu, India",
+    period: "2020",
+    status: "completed",
+    description:
+      "Completed Class X under the CBSE board with distinction. Developed strong foundations in Mathematics, Science, and Computer Science.",
+    tags: ["CBSE", "Mathematics", "Science", "Computer Science"],
+    color: "#00d4ff",
+  },
 ];
+
 
 type Tab = "experience" | "education";
 
@@ -84,6 +85,7 @@ interface TimelineCardProps {
   idx: number;
   isInView: boolean;
 }
+
 
 function TimelineCard({
   title,
@@ -188,9 +190,8 @@ export default function ExperienceSection() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-              activeTab === tab.id ? "text-white" : "text-[#555] hover:text-[#888]"
-            }`}
+            className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${activeTab === tab.id ? "text-white" : "text-[#555] hover:text-[#888]"
+              }`}
           >
             {activeTab === tab.id && (
               <motion.div
@@ -222,37 +223,37 @@ export default function ExperienceSection() {
           >
             {activeTab === "experience"
               ? EXPERIENCE.map((exp, idx) => (
-                  <TimelineCard
-                    key={exp.role + exp.company}
-                    title={exp.role}
-                    subtitle={exp.company}
-                    location={exp.location}
-                    period={exp.period}
-                    type={exp.type}
-                    status={exp.status}
-                    description={exp.description}
-                    tags={exp.tags}
-                    color={exp.color}
-                    idx={idx}
-                    isInView={isInView}
-                  />
-                ))
+                <TimelineCard
+                  key={exp.role + exp.company}
+                  title={exp.role}
+                  subtitle={exp.company}
+                  location={exp.location}
+                  period={exp.period}
+                  type={exp.type}
+                  status={exp.status}
+                  description={exp.description}
+                  tags={exp.tags}
+                  color={exp.color}
+                  idx={idx}
+                  isInView={isInView}
+                />
+              ))
               : EDUCATION.map((edu, idx) => (
-                  <TimelineCard
-                    key={edu.degree}
-                    title={edu.degree}
-                    subtitle={edu.institution}
-                    location={edu.location}
-                    period={edu.period}
-                    type={"Full-Time"}
-                    status={edu.status}
-                    description={edu.description}
-                    tags={edu.tags}
-                    color={edu.color}
-                    idx={idx}
-                    isInView={isInView}
-                  />
-                ))}
+                <TimelineCard
+                  key={edu.degree}
+                  title={edu.degree}
+                  subtitle={edu.institution}
+                  location={edu.location}
+                  period={edu.period}
+                  type={"Full-Time"}
+                  status={edu.status}
+                  description={edu.description}
+                  tags={edu.tags}
+                  color={edu.color}
+                  idx={idx}
+                  isInView={isInView}
+                />
+              ))}
           </motion.div>
         </AnimatePresence>
       </div>

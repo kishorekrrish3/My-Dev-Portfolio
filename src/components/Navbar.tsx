@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import {
   Home,
@@ -74,11 +75,22 @@ export default function Navbar() {
               {/* Logo */}
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="font-mono text-sm font-semibold tracking-wider"
+                className="flex items-center gap-3"
+                aria-label="Back to top"
               >
-                <span className="text-[#00ff9d]">&gt;</span>{" "}
-                <span className="text-white">kishore</span>
-                <span className="text-[#00ff9d]">.dev</span>
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  height={32}
+                  width={32}
+                  className="h-8 w-auto object-contain"
+                  priority
+                />
+                <span className="font-mono text-sm font-semibold tracking-wider">
+                  <span className="text-[#00ff9d]">&gt;</span>{" "}
+                  <span className="text-white">kishore</span>
+                  <span className="text-[#00ff9d]">.dev</span>
+                </span>
               </button>
 
               {/* Desktop links */}
@@ -87,11 +99,10 @@ export default function Navbar() {
                   <button
                     key={link.href}
                     onClick={() => handleNav(link.href)}
-                    className={`font-mono text-xs tracking-widest uppercase transition-colors duration-200 relative ${
-                      activeSection === link.href
-                        ? "text-[#00ff9d]"
-                        : "text-[#888] hover:text-white"
-                    }`}
+                    className={`font-mono text-xs tracking-widest uppercase transition-colors duration-200 relative ${activeSection === link.href
+                      ? "text-[#00ff9d]"
+                      : "text-[#888] hover:text-white"
+                      }`}
                   >
                     {link.label}
                     {activeSection === link.href && (
@@ -131,9 +142,8 @@ export default function Navbar() {
                       <button
                         key={link.href}
                         onClick={() => handleNav(link.href)}
-                        className={`font-mono text-sm tracking-widest uppercase text-left transition-colors ${
-                          activeSection === link.href ? "text-[#00ff9d]" : "text-[#888]"
-                        }`}
+                        className={`font-mono text-sm tracking-widest uppercase text-left transition-colors ${activeSection === link.href ? "text-[#00ff9d]" : "text-[#888]"
+                          }`}
                       >
                         {activeSection === link.href ? "> " : "  "}
                         {link.label}

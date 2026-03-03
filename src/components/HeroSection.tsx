@@ -2,23 +2,22 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { Particles } from "@/components/magicui/particles";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import { Highlighter } from "@/components/magicui/highlighter";
+import { GravityStarsBackground } from "@/components/ui/gravity-stars-background";
 
 const SOCIAL_LINKS = [
-  { icon: Github, href: "https://github.com/", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/in/", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:kishore@example.com", label: "Email" },
-  { icon: Twitter, href: "https://twitter.com/", label: "Twitter" },
+  { icon: Github, href: "https://github.com/kishorekrrish3", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/kishore-p-vitc/", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:kidkrrish3@gmail.com", label: "Email" },
 ];
 
 const TITLES = [
   "Full-Stack Developer",
-  "AI & ML Enthusiast",
+  "AI, ML & Deep Learning Enthusiast",
+  "Programmer",
   "Robotics Engineer",
-  "Problem Solver",
 ];
 
 function TypewriterRole() {
@@ -66,7 +65,7 @@ export default function HeroSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },
     },
   };
 
@@ -75,14 +74,20 @@ export default function HeroSection() {
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
     >
-      {/* Magic UI Particles background */}
-      <Particles
+      {/* Animate UI – Gravity Stars Background */}
+      <GravityStarsBackground
         className="absolute inset-0 z-0"
-        quantity={120}
-        ease={80}
-        staticity={40}
-        color="#00ff9d"
-        size={0.5}
+        starColor="#00ff9d"
+        starsCount={110}
+        starsSize={0.8}
+        starsOpacity={0.35}
+        glowIntensity={5}
+        glowAnimation="ease"
+        movementSpeed={0.2}
+        mouseInfluence={130}
+        mouseGravity="attract"
+        gravityStrength={80}
+        starsInteraction={false}
       />
 
       {/* Subtle radial vignette */}

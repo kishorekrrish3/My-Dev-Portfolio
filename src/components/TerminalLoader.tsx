@@ -3,15 +3,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const BOOT_LINES = [
-  { text: "> initializing system...", delay: 0 },
-  { text: "> loading kernel modules...", delay: 600 },
-  { text: "> starting dev server...", delay: 1200 },
-  { text: "> running on localhost:3000...", delay: 1900 },
-  { text: "> compiling AI and Web modules...", delay: 2700 },
-  { text: "> mounting components...", delay: 3500 },
-  { text: "> [  OK  ] All systems operational", delay: 4200 },
-  { text: "> SUCCESS: Welcome, Kishore P.", delay: 4900 },
+const BOOT_TEXTS = [
+  "> initializing system...",
+  "> loading kernel modules...",
+  "> starting dev server...",
+  "> running on localhost:3000...",
+  "> compiling AI and Web modules...",
+  "> mounting components...",
+  "> [  OK  ] All systems operational",
+  "> SUCCESS: Welcome, Kishore P.",
 ];
 
 interface TerminalLineProps {
@@ -19,9 +19,10 @@ interface TerminalLineProps {
   onDone?: () => void;
   typingSpeed?: number;
   isSuccess?: boolean;
+  isCurrent?: boolean;
 }
 
-function TerminalLine({ text, onDone, typingSpeed = 28, isSuccess = false }: TerminalLineProps) {
+function TerminalLine({ text, onDone, typingSpeed = 28, isSuccess = false, isCurrent = false }: TerminalLineProps) {
   const [displayed, setDisplayed] = useState("");
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function TerminalLine({ text, onDone, typingSpeed = 28, isSuccess = false }: Ter
   return (
     <div className={`font-mono text-sm md:text-base leading-relaxed ${getColor()}`}>
       {displayed}
-      <span className="animate-pulse">▌</span>
+      {isCurrent && <span className="animate-pulse ml-1">▌</span>}
     </div>
   );
 }
@@ -65,21 +66,32 @@ export default function TerminalLoader({ onComplete }: TerminalLoaderProps) {
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
 
-    BOOT_LINES.forEach((line, idx) => {
+    let accumulatedDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 400;
+
+    BOOT_TEXTS.forEach((_, idx) => {
+      // Create a random delay between 200ms and 900ms
+      // Make the final "SUCCESS" step wait a bit longer for dramatic effect
+      const randomWait =
+        idx === BOOT_TEXTS.length - 1
+          ? 800 + Math.random() * 400
+          : 150 + Math.random() * 650;
+
+      accumulatedDelay += randomWait;
+
       const t = setTimeout(() => {
         setVisibleLines((prev) => [...prev, idx]);
         setCurrentLine(idx);
-      }, line.delay);
+      }, accumulatedDelay);
       timers.push(t);
     });
 
-    const lastDelay = BOOT_LINES[BOOT_LINES.length - 1].delay + 1200;
+    const lastDelay = accumulatedDelay + 1200;
     const doneTimer = setTimeout(() => {
       setDone(true);
       setTimeout(() => {
         setFadeOut(true);
         setTimeout(onComplete, 800);
-      }, 700);
+      }, 1000);
     }, lastDelay);
     timers.push(doneTimer);
 
@@ -137,9 +149,9 @@ export default function TerminalLoader({ onComplete }: TerminalLoaderProps) {
                 {visibleLines.map((lineIdx) => (
                   <TerminalLine
                     key={lineIdx}
-                    text={BOOT_LINES[lineIdx].text}
-                    isSuccess={BOOT_LINES[lineIdx].text.includes("SUCCESS")}
-                    typingSpeed={lineIdx === BOOT_LINES.length - 1 ? 22 : 28}
+                    text={BOOT_TEXTS[lineIdx]}
+                    isSuccess={BOOT_TEXTS[lineIdx].includes("SUCCESS")}
+                    typingSpeed={lineIdx === BOOT_TEXTS.length - 1 ? 22 : 28}
                   />
                 ))}
 
